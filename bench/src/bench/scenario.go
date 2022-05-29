@@ -1720,6 +1720,7 @@ func CheckGetHistory(ctx context.Context, state *State, chanID int, mode PageFol
 	log.Println("GET 2")
 	log.Println(pages)
 	for _, page := range pages {
+		log.Println("/history/%d?page=%d", chanID, page)
 		err = checker.Play(ctx, &CheckAction{
 			Method:             "GET",
 			Path:               fmt.Sprintf("/history/%d?page=%d", chanID, page),
