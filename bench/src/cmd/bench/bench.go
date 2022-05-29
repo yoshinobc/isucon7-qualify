@@ -104,6 +104,7 @@ func preTest(ctx context.Context, state *bench.State) error {
 		return err
 	}
 	log.Println("check 5")
+	log.Println(chanID)
 	err = bench.CheckGetHistory(ctx, state, chanID, bench.FollowModeTail)
 	if err != nil {
 		return err
