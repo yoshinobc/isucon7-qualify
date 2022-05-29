@@ -80,74 +80,75 @@ func preTest(ctx context.Context, state *bench.State) error {
 	maxChannelCount := 100
 	var chanID int
 	for state.TotalChannelCount() < maxChannelCount {
+		log.Println("CheckPostAddChannel")
 		chanID, err = bench.CheckPostAddChannel(ctx, state)
 		if err != nil {
 			return err
 		}
 	}
-
+	log.Println("check 1")
 	state.DistributeTmpChannelIDs()
-
+	log.Println("check 2")
 	err = bench.CheckGetAddChannel(ctx, state)
 	if err != nil {
 		return err
 	}
-
+	log.Println("check 3")
 	err = bench.CheckPostAddChannelFail(ctx, state)
 	if err != nil {
 		return err
 	}
-
+	log.Println("check 4")
 	err = bench.CheckGetProfileFail(ctx, state)
 	if err != nil {
 		return err
 	}
-
+	log.Println("check 5")
 	err = bench.CheckGetHistory(ctx, state, chanID, bench.FollowModeTail)
 	if err != nil {
 		return err
 	}
-
+	log.Println("check 6")
 	err = bench.CheckGetHistory(ctx, state, 1, bench.FollowModeTail)
 	if err != nil {
 		return err
 	}
-
+	log.Println("check 7")
 	err = bench.CheckNotLoggedInUser(ctx, state)
 	if err != nil {
 		return err
 	}
-
+	log.Println("check 8")
 	err = bench.CheckStaticFiles(ctx, state)
 	if err != nil {
 		return err
 	}
-
+	log.Println("check 9")
 	err = bench.CheckLogin(ctx, state)
 	if err != nil {
 		return err
 	}
-
+	log.Println("check 10")
 	err = bench.CheckRegisterProfile(ctx, state)
 	if err != nil {
 		return err
 	}
-
+	log.Println("check 11")
 	err = bench.CheckGetChannel(ctx, state)
 	if err != nil {
 		return err
 	}
-
+	log.Println("check 12")
 	err = bench.CheckFecthRegisterAndLogin(ctx, state)
 	if err != nil {
 		return err
 	}
-
+	log.Println("check 13")
 	err = bench.CheckFecthUnreadCount(ctx, state)
 	if err != nil {
 		return err
 	}
-
+	log.Println("check 14")
 	err = bench.CheckMessageScenario(ctx, state)
 	if err != nil {
 		return err
