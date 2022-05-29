@@ -1624,11 +1624,12 @@ const (
 
 func CheckGetHistory(ctx context.Context, state *State, chanID int, mode PageFollowMode) error {
 	user, checker, push := state.PopRandomUser()
+	log.Println(user, checker, push)
 	if user == nil {
 		return nil
 	}
 	defer push()
-
+	log.Println("POST")
 	err := checker.Play(ctx, &CheckAction{
 		Method:      "POST",
 		Path:        "/login",
@@ -1642,7 +1643,7 @@ func CheckGetHistory(ctx context.Context, state *State, chanID int, mode PageFol
 	if err != nil {
 		return err
 	}
-
+	log.Println("GET")
 	maxPage := 1
 	minMap, _ := state.SnapshotMessageCount()
 	err = checker.Play(ctx, &CheckAction{
@@ -1716,7 +1717,7 @@ func CheckGetHistory(ctx context.Context, state *State, chanID int, mode PageFol
 			}
 		}
 	}
-
+	log.Println("GET 2")
 	for _, page := range pages {
 		err = checker.Play(ctx, &CheckAction{
 			Method:             "GET",
