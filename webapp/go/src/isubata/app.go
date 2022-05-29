@@ -626,7 +626,7 @@ func postProfile(c echo.Context) error {
 	if self == nil {
 		return err
 	}
-
+	log.Println("post profile")
 	avatarName := ""
 	var avatarData []byte
 
@@ -685,6 +685,7 @@ func postProfile(c echo.Context) error {
 func getIcon(c echo.Context) error {
 	var name string
 	var data []byte
+	log.Println("get Icon")
 	err := db.QueryRow("SELECT name, data FROM image WHERE name = ?",
 		c.Param("file_name")).Scan(&name, &data)
 	if err == sql.ErrNoRows {
