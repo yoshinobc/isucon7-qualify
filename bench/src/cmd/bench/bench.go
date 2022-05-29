@@ -76,7 +76,7 @@ func requestInitialize(targetHost string) error {
 // エラーが発生したら負荷をかけずに終了する
 func preTest(ctx context.Context, state *bench.State) error {
 	var err error
-
+	log.Println("check")
 	maxChannelCount := 100
 	var chanID int
 	for state.TotalChannelCount() < maxChannelCount {
